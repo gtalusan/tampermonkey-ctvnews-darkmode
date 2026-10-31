@@ -12,6 +12,12 @@ A [Tampermonkey](https://www.tampermonkey.net/) userscript that gives
 The script matches `https://www.ctvnews.ca/*` and `https://ctvnews.ca/*`, runs at
 `document-start` (no white flash), and requires no special permissions (`@grant none`).
 
+## Screenshot
+
+Homepage top, desktop resolution:
+
+![CTV News homepage in dark mode](screenshot.png)
+
 ## What it covers
 
 - **Homepage** — header, breaking bar, article grid, sidebar, video sections, recipes,
@@ -46,9 +52,7 @@ the heavy lifting:
 ## Files
 
 - `ctvnews-dark-mode.user.js` — the userscript
-- `before.png`, `v2.png` — homepage before/after
-- `v4-article.png`, `v4-video.png`, `v4-search.png`, `v4-flyout.png` — page types
-- `final-*.png` — regression fixes: video sections, footer links bar, weather widget
+- `screenshot.png` — homepage in dark mode
 
 ## Notes
 

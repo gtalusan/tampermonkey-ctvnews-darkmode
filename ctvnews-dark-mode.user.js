@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         CTV News Dark Mode
-// @namespace    https://github.com/george/ctvnews-darkmode
+// @namespace    https://github.com/gtalusan/tampermonkey-ctvnews-darkmode
 // @version      0.1.0
 // @description  Dark mode for ctvnews.ca — rethemes the site's design tokens and fixes hard-coded light surfaces.
 // @author       George
