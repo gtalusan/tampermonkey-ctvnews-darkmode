@@ -1,11 +1,13 @@
 // ==UserScript==
-// @name         CTV News Dark Mode
+// @name         CTV News & CP24 Dark Mode
 // @namespace    https://github.com/gtalusan/tampermonkey-ctvnews-darkmode
-// @version      0.1.0
-// @description  Dark mode for ctvnews.ca — rethemes the site's design tokens and fixes hard-coded light surfaces.
+// @version      0.2.0
+// @description  Dark mode for ctvnews.ca and cp24.com (same Bell Media platform) — rethemes the site's design tokens and fixes hard-coded light surfaces.
 // @author       George
 // @match        https://www.ctvnews.ca/*
 // @match        https://ctvnews.ca/*
+// @match        https://www.cp24.com/*
+// @match        https://cp24.com/*
 // @grant        none
 // @run-at       document-start
 // ==/UserScript==
@@ -142,6 +144,13 @@ input::placeholder {
 .queryly_advanced_search a {
   color: #8ab8f0 !important;
 }
+.queryly_searchcontainer,
+#queryly_searchcontainer {
+  background: #121417 !important;
+}
+#advanced_searchbutton {
+  background: #22262b !important;
+}
 
 /* ============ Generic safety net ============ */
 /* Light text forced onto dark surfaces */
@@ -160,9 +169,21 @@ p, li, span, h1, h2, h3, h4, h5, h6 {
 }
 `;
 
+  const IS_CP24 = /(^|\.)cp24\.com$/.test(location.hostname);
+
+  /* CP24 brand rules: the CP24 red (#be0a0a) is the site's accent color.
+     It reads better slightly brightened on dark surfaces. Scoped per host
+     so ctvnews.ca keeps its blue accent exactly as before. */
+  const CP24_CSS = `
+/* ============ CP24 brand accent (red on dark) ============ */
+:root {
+  --color-primary: #d42b2b !important;
+}
+`;
+
   const style = document.createElement('style');
   style.id = 'ctv-dark-mode-style';
-  style.textContent = CSS;
+  style.textContent = CSS + (IS_CP24 ? CP24_CSS : '');
 
   function inject() {
     const target = document.head || document.documentElement;
@@ -196,6 +217,12 @@ p, li, span, h1, h2, h3, h4, h5, h6 {
 .bmw-search__input { background-color: #22262b !important; border-color: #3c4249 !important; }
 .bmw-summarised-weather--border { border-color: #2b3035 !important; }
 .bmw-weather-alert__title-container:before { border-color: #dfe3e7 !important; color: #dfe3e7 !important; }
+.bmw-tabs__list__item__button { background-color: #1c1f23 !important; }
+.bmw-tabs__list__item__button--active {
+  background-color: #23272c !important;
+  border-color: #ff6b6b !important;
+  color: #ff6b6b !important;
+}
 `;
 
   function fixBmwShadow(el) {

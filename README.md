@@ -1,7 +1,8 @@
-# CTV News Dark Mode
+# CTV News & CP24 Dark Mode
 
 A [Tampermonkey](https://www.tampermonkey.net/) userscript that gives
-[ctvnews.ca](https://www.ctvnews.ca) a full dark theme.
+[ctvnews.ca](https://www.ctvnews.ca) and [cp24.com](https://www.cp24.com) — the
+same Bell Media platform — a full dark theme.
 
 ## Install
 
@@ -9,8 +10,9 @@ A [Tampermonkey](https://www.tampermonkey.net/) userscript that gives
 2. Open the Tampermonkey dashboard → **Utilities** → **Import from file** and select
    `ctvnews-dark-mode.user.js` — or drag the file onto a browser tab.
 
-The script matches `https://www.ctvnews.ca/*` and `https://ctvnews.ca/*`, runs at
-`document-start` (no white flash), and requires no special permissions (`@grant none`).
+The script matches `https://www.ctvnews.ca/*`, `https://ctvnews.ca/*`,
+`https://www.cp24.com/*` and `https://cp24.com/*`, runs at `document-start`
+(no white flash), and requires no special permissions (`@grant none`).
 
 ## Screenshot
 
@@ -26,6 +28,11 @@ Homepage top, desktop resolution:
 - **Video pages** — player area, Top Videos, Latest Videos, channel pages
 - **Search overlay** (Queryly) and the **Sections flyout menu**
 - **Weather widgets** — including the Bell Media Weather (`bmw-*`) custom elements
+- **CP24 specifics** — the CP24 red (`#be0a0a`, brightened to `#d42b2b`) stays as the
+  accent on cp24.com (headlines, overlines), while ctvnews.ca keeps its blue accent;
+  the `/weather` page's `bmw-weather-details` tabs and the Queryly search container are
+  darkened on both sites. The traffic page's 511on.ca map iframe is cross-origin and
+  left as-is (maps stay light, same as on CTV).
 
 ## How it works
 
@@ -112,3 +119,5 @@ background.
   newly mounted sections are styled as soon as they paint. The BMW watcher handles
   the shadow-DOM widgets the same way.
 - The CTV red (`#EB0401`) is kept as the accent color — it reads well on dark.
+  On cp24.com the site's own primary red (`#be0a0a`) fills that role instead,
+  brightened to `#d42b2b` for contrast on dark surfaces.
